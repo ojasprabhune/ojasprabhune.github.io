@@ -1,0 +1,313 @@
+/* All colors, fonts, and heading sizes come from CSS custom properties set
+   at runtime by js/theme.js from js/theme.config.js.
+   To restyle the site, edit theme.config.js — not this file. */
+
+html {
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--body-size, 1rem);
+  font-weight: var(--body-weight, 400);
+  line-height: var(--body-line-height, 1.7);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--h1-size, clamp(2.4rem, 6vw, 4rem));
+  font-weight: var(--h1-weight, 400);
+  letter-spacing: var(--h1-letter-spacing, -0.01em);
+  line-height: var(--h1-line-height, 1.05);
+}
+
+h2 {
+  font-size: var(--h2-size, clamp(1.6rem, 3.5vw, 2.4rem));
+  font-weight: var(--h2-weight, 400);
+  letter-spacing: var(--h2-letter-spacing, -0.01em);
+  line-height: var(--h2-line-height, 1.15);
+}
+
+h3 {
+  font-size: var(--h3-size, clamp(1.2rem, 2.5vw, 1.6rem));
+  font-weight: var(--h3-weight, 400);
+  letter-spacing: var(--h3-letter-spacing, 0em);
+  line-height: var(--h3-line-height, 1.25);
+}
+
+p { max-width: 65ch; }
+
+a { color: var(--color-accent); }
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+/* ---- Dark mode icon switching ---- */
+[data-theme="light"] .icon-dark  { display: none; }
+[data-theme="dark"]  .icon-light { display: none; }
+
+/* ---- Glassmorphism surface ----
+   Apply to any element that should look like frosted glass.
+   Pairs with a specific border-radius on the element itself. */
+.glass-surface {
+  background: var(--color-surface);
+  backdrop-filter: blur(18px) saturate(190%);
+  -webkit-backdrop-filter: blur(18px) saturate(190%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.55),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.04),
+    0 8px 28px rgba(0, 0, 0, 0.07);
+  position: relative;
+}
+
+/* Glass edge: static spectral border, like light refracting through glass thickness.
+   Warm (golden/amber) at one curved end, cool (blue/violet) at the other —
+   the way a real lens or glass pill disperses light from a single overhead source. */
+.glass-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+
+  /* conic-gradient traces the perimeter: bright white at top, warm glint at
+     lower-left, cool glint at lower-right — no animation, fully structural */
+  background: conic-gradient(
+    from 200deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 215, 90,  0.28) 12%,
+    rgba(255, 255, 255, 0.26) 28%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(110, 185, 255, 0.25) 72%,
+    rgba(200, 120, 255, 0.14) 85%,
+    rgba(255, 255, 255, 0.06)
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+/* Inner glass surface: top-edge specular highlight + prismatic end-cap glints.
+   The glints sit at the curved pill ends where refraction is strongest. */
+.glass-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background:
+    /* Specular highlight along the top surface of the glass */
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.0)  35%),
+    /* Left-end prismatic glow: warm amber-to-coral dispersion */
+    radial-gradient(ellipse 36% 68% at 2% 50%,
+      rgba(255, 208, 70,  0.13) 0%,
+      rgba(255, 110, 80,  0.05) 50%,
+      transparent 72%),
+    /* Right-end prismatic glow: cool blue-to-violet dispersion */
+    radial-gradient(ellipse 36% 68% at 98% 50%,
+      rgba(100, 178, 255, 0.12) 0%,
+      rgba(185, 90,  255, 0.05) 50%,
+      transparent 72%);
+}
+
+/* ---- Animated underline ---- */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.35s ease, color 0.2s ease;
+}
+.link-underline:hover {
+  color: var(--color-accent);
+  background-size: 100% 1px;
+}
+
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Marquee / moving gallery ---- */
+.marquee {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  flex-shrink: 0;
+  width: clamp(200px, 25vw, 360px);
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .marquee-item {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.marquee-item:hover img {
+  transform: scale(1.04);
+}
+
+/* ---- Prose: markdown-rendered content ---- */
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  margin-top: 2.2em;
+  margin-bottom: 0.55em;
+}
+.prose h1:first-child,
+.prose h2:first-child { margin-top: 0; }
+
+.prose p { margin-bottom: 1.3em; }
+
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.3em;
+}
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li { margin-bottom: 0.3em; }
+
+.prose blockquote {
+  border-left: 2px solid var(--color-accent);
+  margin: 1.8em 0;
+  padding: 0.4em 1.2em;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-family: var(--font-heading);
+  font-size: 1.15em;
+}
+
+.prose pre {
+  background: var(--color-surface);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  padding: 1.1em 1.3em;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.855rem;
+  line-height: 1.65;
+  margin-bottom: 1.3em;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.855em;
+  background: var(--color-accent-soft);
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+}
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+
+.prose img {
+  border-radius: 8px;
+  margin: 1.8em 0;
+  max-width: 100%;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.8em;
+  font-size: 0.9rem;
+}
+.prose th, .prose td {
+  text-align: left;
+  padding: 0.65em 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+.prose th {
+  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--color-accent);
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 2.5em 0;
+}
+
+.prose strong { font-weight: 600; }
+.prose em { font-style: italic; }
+
+/* ---- Keyframes ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes grainOvalIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 0.95; transform: translateY(0) scale(1); }
+}
+
+@keyframes grainFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  28%       { transform: translateY(-6px) scale(1.005); }
+  65%       { transform: translateY(5px) scale(0.998); }
+}

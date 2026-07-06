@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-page="hobbies">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.hobbies — ojasprabhune</title>
+  <meta name="description" content="Photography, crochet, and whatever else." />
+
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/page.css" />
+
+  <script src="../js/theme.config.js"></script>
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <header class="page-header">
+      <a href="../index.html" class="back-link" aria-label="Back to home">home</a>
+      <span class="page-title"><span class="dot">.</span>hobbies</span>
+    </header>
+
+    <main>
+
+      <!-- ---- Moving photo gallery (full-bleed) ---- -->
+      <section class="gallery-section" aria-label="Photo gallery">
+        <div class="gallery-label-wrap">
+          <p class="section-label">photography</p>
+        </div>
+        <div class="marquee" role="region" aria-label="Scrolling photo gallery">
+          <div class="marquee-track">
+            <!--
+              To add photos: replace each placeholder <div> with:
+              <div class="marquee-item">
+                <img src="../assets/images/your-photo.jpg" alt="A description" />
+              </div>
+            -->
+            <div class="marquee-item"></div>
+            <div class="marquee-item"></div>
+            <div class="marquee-item"></div>
+            <div class="marquee-item"></div>
+            <div class="marquee-item"></div>
+            <div class="marquee-item"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-content">
+
+        <!-- ---- Hero ---- -->
+        <div class="page-hero reveal">
+          <h1>hobbies</h1>
+          <p class="lead">Photography, crochet, and whatever else I'm into at the moment.</p>
+        </div>
+
+        <!-- ---- Crochet section ---- -->
+        <section style="margin-bottom: 3.5rem;">
+          <p class="section-label">crochet</p>
+          <div class="post-grid">
+            <!--
+              Add cards as you make things:
+              <a href="post.html?src=../posts/some-post.md&page=hobbies" class="post-card reveal">
+                <span class="post-date">2026 — 07</span>
+                <h2 class="post-title">Frog amigurumi</h2>
+                <p class="post-excerpt">A small frog. He's green.</p>
+              </a>
+            -->
+            <p class="empty-note">nothing here yet — check back soon.</p>
+          </div>
+        </section>
+
+        <!-- ---- Writing section ---- -->
+        <section>
+          <p class="section-label">writing</p>
+          <div class="post-grid">
+            <a href="post.html?src=../posts/hello.md&page=hobbies" class="post-card reveal">
+              <span class="post-date">2026 — 07 — 05</span>
+              <h2 class="post-title">Hello, world</h2>
+              <p class="post-excerpt">A first post. An introduction. A starting point.</p>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <button class="glass-surface theme-toggle" onclick="toggleThemeMode()" aria-label="Toggle dark mode">
+    <span class="icon-light">☽</span>
+    <span class="icon-dark">☀</span>
+  </button>
+
+  <script src="../js/gallery.js"></script>
+  <script src="../js/scroll.js"></script>
+</body>
+</html>
