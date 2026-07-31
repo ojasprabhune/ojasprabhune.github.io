@@ -42,9 +42,9 @@ window.themeConfig = {
     // },
 
     fonts: {
-      heading: "'Cormorant Garamond', serif",
-      body: "'DM Sans', sans-serif",
-      mono: "'JetBrains Mono', monospace",
+      heading: "'mencken-std-text', serif",
+      body: "'neue-haas-grotesk-display', sans-serif",
+      mono: "'calling-code', monospace",
     },
 
     headingStyles: {
@@ -70,7 +70,7 @@ window.themeConfig = {
 
     bodyStyle: {
       size: "1rem",
-      weight: 400,
+      weight: 500,
       lineHeight: 1.7,
     },
   },
