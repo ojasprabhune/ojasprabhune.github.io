@@ -12,9 +12,10 @@
       // (explicit choice, else the OS preference).
       try {
         var stored = localStorage.getItem('life_theme')
-        var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
-        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored)
-        document.getElementById('theme-color-meta').setAttribute('content', dark ? '#1c1713' : '#fbf3ea')
+        var colors = { light: '#fbf3ea', dark: '#1c1713', slate: '#f5f2f3' }
+        if (colors[stored]) document.documentElement.setAttribute('data-theme', stored)
+        var color = colors[stored] || (window.matchMedia('(prefers-color-scheme: dark)').matches ? '#1c1713' : '#fbf3ea')
+        document.getElementById('theme-color-meta').setAttribute('content', color)
       } catch (e) {}
     </script>
     <link rel="icon" type="image/svg+xml" href="/lifefolders/favicon.svg" />
@@ -26,8 +27,8 @@
     <meta name="apple-mobile-web-app-title" content="life" />
     <link rel="stylesheet" href="https://use.typekit.net/hck5xcw.css" />
     <title>life</title>
-    <script type="module" crossorigin src="/lifefolders/assets/index-B0t1qrUi.js"></script>
-    <link rel="stylesheet" crossorigin href="/lifefolders/assets/index-3ME8tAlJ.css">
+    <script type="module" crossorigin src="/lifefolders/assets/index-DWuqgm6a.js"></script>
+    <link rel="stylesheet" crossorigin href="/lifefolders/assets/index-CsafdpOT.css">
   </head>
   <body>
     <div id="root"></div>
