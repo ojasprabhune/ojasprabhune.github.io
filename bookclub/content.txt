@@ -1,0 +1,37 @@
+# LAHIRI LITERARY SOCIETY - SITE TEXT
+# Everything on the website comes from this file. Edit the words and save.
+# Lines starting with # are notes like this one and don't show up on the site.
+# Put *stars* around words to make them italic, like *The Namesake*.
+
+Club name: Lahiri Literary Society
+Subtitle: AP Literature, Period 3 · Fall Book Club
+
+
+== Home ==
+
+Heading: Currently reading
+Welcome: Welcome to the Lahiri Literary Society. We're reading *The Namesake* by Jhumpa Lahiri.
+
+
+== About Us ==
+
+Heading: About us
+
+# One line per person:   Name | photo | fun fact
+Ojas | images/ojas.jpg | Likes to crochet.
+Saanvi | images/saanvi.jpg | Loves SpongeBob.
+Aditi | images/aditi.jpg | Loves reading and Peppa Pig, and is almost legally blind.
+
+
+== Reading Schedule ==
+
+Heading: Reading schedule
+Intro: What to have read by each meeting of *The Namesake*.
+
+# One line per meeting:   meeting number | date | what to have read
+# A line with no | in it becomes a break row across the table.
+1 | Nov 12 | Chapters 1–?
+2 | Nov 19 | Chapters ?–?
+Thanksgiving break
+3 | Dec 3 | Chapters ?–?
+4 | Dec 10 | Chapters ?–end
