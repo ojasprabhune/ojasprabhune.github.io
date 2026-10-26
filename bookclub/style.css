@@ -85,3 +85,25 @@ footer {
   color: #7a6e5f;
   margin-top: 60px;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+th {
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  text-align: left;
+  border-bottom: 2px solid #2b2620;
+  padding: 6px 10px;
+}
+td {
+  border-bottom: 1px solid #d8cfbf;
+  padding: 10px;
+}
+tr.break td {
+  text-align: center;
+  font-style: italic;
+  color: #7a6e5f;
+}
