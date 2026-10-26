@@ -30,8 +30,8 @@ Intro: What to have read by each meeting of *The Namesake*.
 
 # One line per meeting:   meeting number | date | what to have read
 # A line with no | in it becomes a break row across the table.
-1 | Nov 12 | Pages 0-103
+1 | Nov 12 | Pages 1-103
 2 | Nov 19 | Pages 104-133
 Thanksgiving break
 3 | Dec 3 | Pages 134-233
-4 | Dec 10 | Pages 233-310
+4 | Dec 10 | Pages 234-310
