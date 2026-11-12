@@ -18,9 +18,9 @@ Welcome: Welcome to the Lahiri Literary Society. We're reading *The Namesake* by
 Heading: About us
 
 # One line per person:   Name | photo | fun fact
-Ojas | images/ojas.jpg | Likes to crochet.
-Saanvi | images/saanvi.jpg | Loves SpongeBob.
-Aditi | images/aditi.jpg | Loves reading and Peppa Pig, and is almost legally blind.
+Ojas | assets/ojas.jpg | Likes to crochet.
+Saanvi | assets/saanvi.jpg | Loves SpongeBob.
+Aditi | assets/aditi.jpg | Loves reading and Peppa Pig, and is almost legally blind.
 
 
 == Reading Schedule ==
