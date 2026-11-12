@@ -14,25 +14,64 @@
     <nav><a href="index.html">Home</a><a href="about.html">About Us</a><a href="schedule.html">Reading Schedule</a><a class="here" href="minutes.html">Meeting Minutes</a></nav>
   </header>
 
-  <p class="intro">What we did at each meeting!</p>
+  <p>What we did at each meeting!</p>
 
-  <!-- To add a new meeting, paste a copy of a <article class="minutes"> block ABOVE the last one, so newest stays at the top. -->
-  <main id="minutes">
-
+  <div class="reel" id="reel">
+    <!-- To add a new meeting: paste a copy of an <article class="minutes"> block ABOVE the last one, so the newest is the first card. -->
     <article class="minutes">
       <h3>Meeting #1 - 12 November 2026</h3>
       <figure>
-        <img src="images/meeting1-side1.jpg" alt="Meeting 1 handout, side 1: discussion notes" loading="lazy">
-        <figcaption class="caption">Handout Side 1: DISCUSSION</figcaption>
+        <figcaption>Handout Side 1: DISCUSSION</figcaption>
+        <a href="images/meeting1-side1.jpg" target="_blank"><img src="images/meeting1-side1.jpg" alt="Meeting 1 handout, side 1: discussion notes" loading="lazy"></a>
       </figure>
       <figure>
-        <img src="images/meeting1-side2.jpg" alt="Meeting 1 handout, side 2: tracking themes and motifs" loading="lazy">
-        <figcaption class="caption">Handout Side 2: TRACKING THEMES/MOTIFS</figcaption>
+        <figcaption>Handout Side 2: TRACKING THEMES/MOTIFS</figcaption>
+        <a href="images/meeting1-side2.jpg" target="_blank"><img src="images/meeting1-side2.jpg" alt="Meeting 1 handout, side 2: tracking themes and motifs" loading="lazy"></a>
       </figure>
     </article>
+  </div>
 
-  </main>
+  <div class="reel-nav" id="reelNav" hidden>
+    <button id="prev" aria-label="Previous meeting">&#8592;</button>
+    <span id="counter"></span>
+    <button id="next" aria-label="Next meeting">&#8594;</button>
+  </div>
 
   <footer>&#10087;</footer>
+
+  <script>
+    // Meeting reel: one card per meeting, snapped side by side. The arrows and
+    // the counter only appear once there is more than one meeting to flip through.
+    (function () {
+      const reel = document.getElementById('reel');
+      const nav = document.getElementById('reelNav');
+      const counter = document.getElementById('counter');
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const count = () => reel.querySelectorAll('.minutes').length;
+      if (count() < 2) return;
+      nav.hidden = false;
+      const index = () => Math.round(reel.scrollLeft / reel.clientWidth);
+      const show = (i) => {
+        const n = count();
+        reel.scrollTo({ left: Math.max(0, Math.min(n - 1, i)) * reel.clientWidth, behavior: 'smooth' });
+      };
+      const update = () => {
+        const i = index(), n = count();
+        counter.textContent = `${i + 1} / ${n}`;
+        prev.disabled = i <= 0;
+        next.disabled = i >= n - 1;
+      };
+      prev.addEventListener('click', () => show(index() - 1));
+      next.addEventListener('click', () => show(index() + 1));
+      let raf = 0;
+      reel.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </body>
 </html>
