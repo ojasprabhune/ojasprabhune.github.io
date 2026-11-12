@@ -113,6 +113,7 @@ tr.break td {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   margin-top: 6px;
+  padding: 8px 0;
 }
 .reel::-webkit-scrollbar { display: none; }
 .minutes {
@@ -120,9 +121,10 @@ tr.break td {
   min-width: 100%;
   scroll-snap-align: start;
   margin: 0;
-  padding: 0 8px 8px;
+  box-sizing: border-box;
+  padding: 0 14px 8px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0 24px;
 }
 .minutes h3 {
@@ -162,6 +164,9 @@ tr.break td {
 }
 .minutes img {
   display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
   border: 2px solid #2b2620;
   padding: 0;
   background: none;
@@ -210,7 +215,7 @@ tr.break td {
   left: 0;
   z-index: 10;
   background: rgba(43, 38, 32, 0.92);
-  cursor: pointer;
+  cursor: default;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -229,6 +234,7 @@ tr.break td {
   border: none;
   padding: 0;
   background: none;
+  cursor: pointer;
   transform: translate(-50%, -50%) scale(0.985);
   transition: transform 0.2s ease;
 }
