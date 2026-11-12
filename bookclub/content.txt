@@ -35,3 +35,48 @@ Intro: What to have read by each meeting of *The Namesake*.
 Thanksgiving break
 3 | Dec 3 | Pages 134-233
 4 | Dec 10 | Pages 234-310
+
+
+# ==================================================================
+# MEETING MINUTES - HOW TO ADD A NEW MEETING (no coding, 3 steps)
+#
+# STEP 1 - GET THE PHOTOS INTO THE SITE
+#   The two handout photos must live in bookclub/assets/ as .jpg
+#   (iPhone .heic photos don't show in most browsers, so convert
+#   them). Paste this into Terminal, swapping in your new photos'
+#   file numbers and the next meeting number:
+#
+#     cd ~/Documents/personal/dotfolders/bookclub/assets
+#     sips -s format jpeg -s formatOptions 85 -Z 1600 ~/Downloads/IMG_2503.heic --out meeting2-side1.jpg
+#     sips -s format jpeg -s formatOptions 85 -Z 1600 ~/Downloads/IMG_2504.heic --out meeting2-side2.jpg
+#
+#   side1 = the DISCUSSION page, side2 = the TRACKING THEMES/MOTIFS page.
+#
+# STEP 2 - ADD ONE LINE TO THE LIST BELOW
+#   Under == Meeting Minutes ==, add the new meeting as the FIRST
+#   line, so the newest is always at the top:
+#
+#     Meeting #2 - 19 November 2026 | assets/meeting2-side1.jpg | assets/meeting2-side2.jpg
+#
+#   The captions under the photos automatically say DISCUSSION and
+#   TRACKING THEMES/MOTIFS. Only if a handout says something else,
+#   add the topics at the end of the line:
+#     ... | assets/meeting3-side1.jpg | assets/meeting3-side2.jpg | TOPIC ONE | TOPIC TWO
+#
+# STEP 3 - PUT IT LIVE
+#   Paste this into Terminal:
+#
+#     ~/Documents/personal/dotfolders/bookclub/deploy.sh
+#
+#   It saves and publishes everything; the site updates about a
+#   minute later at https://ojasprabhune.github.io/bookclub/
+# ==================================================================
+
+
+== Meeting Minutes ==
+
+# One meeting per line, NEWEST AT THE TOP:
+#   title | side 1 photo | side 2 photo | side 1 topic | side 2 topic
+# The two topics at the end are optional - leave them off and the
+# captions say DISCUSSION and TRACKING THEMES/MOTIFS like always.
+Meeting #1 - 12 November 2026 | assets/meeting1-side1.jpg | assets/meeting1-side2.jpg
