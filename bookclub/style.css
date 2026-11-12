@@ -170,7 +170,6 @@ tr.break td {
 .minutes .zoom:hover img,
 .minutes .zoom:focus-visible img {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 24px rgba(43, 38, 32, 0.22);
 }
 .reel-nav {
   display: flex;
@@ -224,12 +223,11 @@ tr.break td {
 .lightbox img {
   width: auto;
   height: auto;
-  max-width: 92vw;
-  max-height: 88vh;
+  max-width: 90vw;
+  max-height: 85vh;
   border: none;
   padding: 0;
   background: none;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   transform: scale(0.985);
   transition: transform 0.2s ease;
 }
