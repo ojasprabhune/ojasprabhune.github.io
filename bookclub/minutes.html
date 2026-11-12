@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lahiri Literary Society</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
   <script src="content.js" defer></script>
 </head>
 <body data-page="Meeting Minutes">
@@ -22,11 +22,11 @@
       <h3>Meeting #1 - 12 November 2026</h3>
       <figure>
         <figcaption>Handout Side 1: DISCUSSION</figcaption>
-        <a href="images/meeting1-side1.jpg" target="_blank"><img src="images/meeting1-side1.jpg" alt="Meeting 1 handout, side 1: discussion notes" loading="lazy"></a>
+        <button class="zoom" type="button"><img src="images/meeting1-side1.jpg" alt="Meeting 1 handout, side 1: discussion notes" loading="lazy"></button>
       </figure>
       <figure>
         <figcaption>Handout Side 2: TRACKING THEMES/MOTIFS</figcaption>
-        <a href="images/meeting1-side2.jpg" target="_blank"><img src="images/meeting1-side2.jpg" alt="Meeting 1 handout, side 2: tracking themes and motifs" loading="lazy"></a>
+        <button class="zoom" type="button"><img src="images/meeting1-side2.jpg" alt="Meeting 1 handout, side 2: tracking themes and motifs" loading="lazy"></button>
       </figure>
     </article>
   </div>
@@ -35,6 +35,10 @@
     <button id="prev" aria-label="Previous meeting">&#8592;</button>
     <span id="counter"></span>
     <button id="next" aria-label="Next meeting">&#8594;</button>
+  </div>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <img id="lightboxImg" alt="">
   </div>
 
   <footer>&#10087;</footer>
@@ -71,6 +75,37 @@
       }, { passive: true });
       window.addEventListener('resize', update);
       update();
+    })();
+
+    // Lightbox: a handout fills the screen; click it or anywhere else to put
+    // it back. The fade only runs one way in, so closing is a quick release.
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      let hideTimer = 0;
+      const open = (img) => {
+        clearTimeout(hideTimer);
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => lightbox.classList.add('on'));
+      };
+      const close = () => {
+        lightbox.classList.remove('on');
+        document.body.style.overflow = '';
+        hideTimer = setTimeout(() => {
+          lightbox.hidden = true;
+          lightboxImg.src = '';
+        }, 200);
+      };
+      document.querySelectorAll('.minutes .zoom').forEach((btn) => {
+        btn.addEventListener('click', () => open(btn.querySelector('img')));
+      });
+      lightbox.addEventListener('click', close);
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !lightbox.hidden) close();
+      });
     })();
   </script>
 </body>
