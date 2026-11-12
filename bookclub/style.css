@@ -137,6 +137,13 @@ tr.break td {
 }
 .minutes figure {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.minutes figure a {
+  /* Photos are the same shape, so pushing both to the bottom of the row
+     starts them at the bottom of whichever handout title sits lowest. */
+  margin-top: auto;
 }
 .minutes figcaption {
   font-variant: small-caps;
@@ -149,7 +156,7 @@ tr.break td {
 .minutes a { display: block; }
 .minutes img {
   display: block;
-  border: none;
+  border: 1px solid #2b2620;
   padding: 0;
   background: none;
 }
